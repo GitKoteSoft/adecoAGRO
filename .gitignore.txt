@@ -1,0 +1,16 @@
+# Directorios temporales y cachés
+/tmp/*
+/logs/*
+/vendor/*
+/webroot/js/cache/*
+/webroot/css/cache/*
+/config/app_local.php
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Entorno de desarrollo
+.env
+.idea/
+.vscode/
