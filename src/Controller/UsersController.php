@@ -103,4 +103,32 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+    public function login()
+    {
+        if ($this->request->is('post')) { // Si el formulario fue enviado (POST)
+            $user = $this->Auth->identify(); // Intenta identificar al usuario
+
+            if ($user) {
+                $this->Auth->setUser($user); // Si lo identifica, lo guarda en sesión
+                return $this->redirect($this->Auth->redirectUrl()); // Redirige al destino autorizado
+            }
+
+            $this->Flash->error('Usuario o contraseña incorrectos, intentá de nuevo.'); // Si no, lanza error
+        }
+        
+        // Y si el usuario ya está logueado, lo redirecciona al home.
+        if ($this->Auth->user()) {
+            return $this->redirect(['controller' => 'Users', 'action' => 'index']);
+        }
+    }
+
+    
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+
 }

@@ -16,9 +16,27 @@ html {
  * Remove default margin.
  */
 
-body {
+ html, body {
     margin: 0;
+    padding: 0;
+    /*overflow: hidden;*/
 }
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* mejor que 100% para forzar ancho total */
+    height: 100vh; /* cubro toda la pantalla */
+    z-index: 0;
+    pointer-events: auto; /* permite eventos en ese div */
+}
+/* coloco arriba de la animacion para que se pueda ejecutar los clic en las particulas. */
+.container {
+    position: relative;
+    z-index: 1; /* arriba de las partículas */
+}
+
 
 /* HTML5 display definitions
    ========================================================================== */

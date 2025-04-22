@@ -16,6 +16,15 @@
 
 $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
+
+<!-- Librerias -->
+<?= $this->Html->css('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css') ?>
+
+<!-- Dependencias -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +52,16 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                <li>
+                    <!-- Con esto me aseguro de que aparezca el botón de "Cerrar Sesión" sólo si la sesión de un usuario está iniciada. -->
+                    <?php if ($this->request->getSession()->check('Auth.User')): ?>
+                            <?= $this->Html->link(
+                                'Cerrar sesión',
+                                ['controller' => 'Users', 'action' => 'logout'],
+                                ['class' => 'btn btn-danger', 'confirm' => '¿Estás seguro de que querés cerrar sesión?']
+                            ) ?>
+                    <?php endif; ?>
+                </li>
             </ul>
         </div>
     </nav>
@@ -52,6 +69,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
+
+    
+                            
     <footer>
     </footer>
 </body>

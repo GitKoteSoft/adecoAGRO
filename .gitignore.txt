@@ -5,6 +5,7 @@
 /webroot/js/cache/*
 /webroot/css/cache/*
 /config/app_local.php
+/webroot/js/particles/particles.json
 
 # Archivos del sistema
 .DS_Store
@@ -14,3 +15,6 @@ Thumbs.db
 .env
 .idea/
 .vscode/
+
+# Archivos de log comunes en proyectos
+*.log
