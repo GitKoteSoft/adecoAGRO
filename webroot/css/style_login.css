@@ -1,11 +1,69 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Con esto evito que el scroll aparezca */
+}
+
 h2.iniciar-sesion {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    color: #fdbe33;
+    color: #FDBE33;
+    text-align: center;
+}
+
+hr {
+    border-top: 3px solid black;
+    width: 100%;
 }
 
 label {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #191919;
 }
+
+#particles-js {
+    position: fixed;
+    z-index: 0;
+    pointer-events: auto; /* deja pasar eventos de clic hacia abajo */
+    top: 0;
+    left: 0;
+    width: 100vw; /* mejor que 100% para forzar ancho total */
+    height: 100vh; /* cubro toda la pantalla */
+    background-color:#191919;
+}
+
+/*
+.wrapper-login {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;*/ /* alto total de la pantalla */
+/*}*/
+
+.container-login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    z-index: 1;
+    width: 90%;
+    max-width: 400px;
+
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+
+.form-control {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+}
+
