@@ -1,0 +1,30 @@
+# CakePHP
+/tmp/**
+!/tmp/.gitkeep
+/logs/**
+!/logs/.gitkeep
+/vendor/
+/config/app_local.php
+/plugins/
+/composer.lock
+
+# Cache
+/webroot/js/cache/**
+/webroot/css/cache/**
+/webroot/js/particles/particles.json
+
+# Entorno de desarrollo
+.env
+.env.*
+.idea/
+.vscode/
+.phpunit.result.cache
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs
+*.log

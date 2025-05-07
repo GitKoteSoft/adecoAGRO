@@ -55,13 +55,22 @@ class UsersTable extends Table
             ->scalar('username')
             ->maxLength('username', 255)
             ->requirePresence('username', 'create')
-            ->notEmptyString('username');
+            ->notEmptyString('username', 'Debés ingresar un username');
 
         $validator
             ->scalar('password')
             ->maxLength('password', 255)
+
+            /* La siguiente modificación es a causa de que en Editar Usuario, supongamos que solo queremos editar el nombre */
+            /* de usuario, entonces al presionar el boton Guardar Cambios...me saltaba un cartel "Complete el campo Contraseña", o sea, */
+            /* No me dejaba ponerlo en vacío.*/
+
+            // La contraseña será campo Require al Crear el Usuario y no-vacío.
             ->requirePresence('password', 'create')
-            ->notEmptyString('password');
+            ->notEmptyString('password', 'Debés ingresar una contraseña', 'create')
+
+            // El campo Contraseña no es Require al Editar Usuario, entonces podremos enviar vacío para que no modifique la contraseña.
+            ->allowEmptyString('password', null, 'update');
 
         $validator
             ->scalar('rol')
@@ -70,6 +79,7 @@ class UsersTable extends Table
 
         return $validator;
     }
+
 
     /**
      * Returns a rules checker object that will be used for validating

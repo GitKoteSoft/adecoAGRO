@@ -12,9 +12,13 @@
  * @since         3.3.4
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+
+
 namespace App\Controller;
 
 use Cake\Event\Event;
+use Cake\Event\EventInterface;
+use Cake\Controller\Controller;
 
 /**
  * Error Handling Controller
@@ -51,11 +55,15 @@ class ErrorController extends AppController
      * @param \Cake\Event\Event $event Event.
      * @return \Cake\Http\Response|null|void
      */
-    public function beforeRender(Event $event)
+    /*public function beforeRender(Event $event)
     {
         parent::beforeRender($event);
 
         $this->viewBuilder()->setTemplatePath('Error');
+    }*/
+    public function beforeRender(EventInterface $event): void
+    {
+        parent::beforeRender($event);  // Llamo al padre con la misma firma del Controlador.
     }
 
     /**

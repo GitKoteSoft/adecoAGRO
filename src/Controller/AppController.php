@@ -12,8 +12,11 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
+
 namespace App\Controller;
 
+use Cake\Event\EventInterface;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 
@@ -64,7 +67,7 @@ class AppController extends Controller
                 'action' => 'login'      // Acción login()
             ],
             'loginRedirect' => [ // A dónde redirigir si el login fue exitoso
-                'controller' => 'Users',
+                'controller' => 'Dashboard',
                 'action' => 'index'
             ],
             'logoutRedirect' => [ // A dónde redirigir luego de hacer logout
@@ -83,4 +86,26 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
+
+    public function beforeRender(EventInterface $event): void
+    {
+        parent::beforeRender($event);
+
+        // Solo si el componente Auth está cargado
+        if (isset($this->Auth)) {
+            // Y si hay un usuario logueado, lo paso a las vistas
+            if ($this->request->getSession()->check('Auth.User')) {
+                $this->set('currentUser', $this->Auth->user());
+            }
+        }
+
+        // Mantener compatibilidad para JSON/XML
+        if (!array_key_exists('_serialize', $this->viewVars) &&
+            in_array($this->response->getType(), ['application/json', 'application/xml'])
+        ) {
+            $this->set('_serialize', true);
+        }
+    }
+
+
 }

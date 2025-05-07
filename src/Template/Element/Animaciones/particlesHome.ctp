@@ -1,5 +1,5 @@
 <!-- Este div va a ser el fondo animado de particulas muy copado -->
-<div id="particles-js" style="position:fixed; width:100%; height:100%; background-color:#191919; pointer-events: auto; /* permite eventos en ese div */"></div>
+<div id="particles-js" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index: 0; pointer-events:auto;"></div>
 
 <?php
 echo $this->Html->script('https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js', ['block' => true]);
@@ -18,13 +18,13 @@ echo $this->Html->scriptBlock("document.addEventListener('DOMContentLoaded', fun
                     }
                 },
                 color: {
-                    value: '#ffffff'
+                    value: '#025736'
                 },
                 shape: {
                     type: 'circle',
                     stroke: {
                         width: 2,
-                        color: '#000000'
+                        color: '#191919'
                     },
                     polygon: {
                         nb_sides: 7
@@ -58,7 +58,7 @@ echo $this->Html->scriptBlock("document.addEventListener('DOMContentLoaded', fun
                 line_linked: {
                     enable: true,
                     distance: 150,
-                    color: '#ffffff',
+                    color: '#025736',
                     opacity: 0.4,
                     width: 1
                 },

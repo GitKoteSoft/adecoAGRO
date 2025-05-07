@@ -1,0 +1,23 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Oculta cualquier scroll */
+}
+
+
+/* Contenedor del dashboard que contiene el contenido encima */
+.dashboard-home {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events:none;
+}
+
+/* Marca de agua (logo superpuesto en el centro) */
+.marcadeagua-logo {
+  max-width: 100%;
+}

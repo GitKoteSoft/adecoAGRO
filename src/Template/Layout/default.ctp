@@ -1,78 +1,64 @@
-<?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- * @var \App\View\AppView $this
- */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
-?>
-
-<!-- Librerias -->
-<?= $this->Html->css('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css') ?>
-
-<!-- Dependencias -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-
-
-
 <!DOCTYPE html>
 <html>
-<head>
+
+  <head>
     <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AdecoAGRO: <?= $this->fetch('title') ?></title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
+    <!-- AdminLTE & dependencias CSS -->
+    <?= $this->Html->css([
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/css/OverlayScrollbars.min.css',
+      'https://adminlte.io/themes/v3/dist/css/adminlte.min.css',
+      'style_content'
+    ]) ?>
+  </head>
 
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
-</head>
-<body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li>
-                    <!-- Con esto me aseguro de que aparezca el botón de "Cerrar Sesión" sólo si la sesión de un usuario está iniciada. -->
-                    <?php if ($this->request->getSession()->check('Auth.User')): ?>
-                            <?= $this->Html->link(
-                                'Cerrar sesión',
-                                ['controller' => 'Users', 'action' => 'logout'],
-                                ['class' => 'btn btn-danger', 'confirm' => '¿Estás seguro de que querés cerrar sesión?']
-                            ) ?>
-                    <?php endif; ?>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+
+  <body class="hold-transition layout-fixed layout-navbar-fixed">
+    <?php
+      // Detectar acción de login/logout para no mostrar AdminLTE
+      $isLogin = $this->request->getParam('controller') === 'Users'
+              && in_array($this->request->getParam('action'), ['login','logout']);
+    ?>
+
+    <?php if (!$isLogin): ?>
+      <div class="wrapper">
+      
+      <!-- Header -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <?= $this->element('header_adminlte') ?>
+      </nav>
+
+      <!-- Sidebar -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <?= $this->element('sidebar_adminlte') ?>
+      </aside>
+
+      <!-- Contenido principal -->
+      <div class="content-wrapper">
+        <section class="content pt-3 px-3">
+          <?= $this->Flash->render() ?>
+          <?= $this->fetch('content') ?>
+        </section>
+      </div>
+
     </div>
 
-    
-                            
-    <footer>
-    </footer>
-</body>
+    <?php else: ?>
+        <?= $this->Flash->render() ?>
+        <?= $this->fetch('content') ?>
+    <?php endif; ?>
+
+    <!-- AdminLTE y sus respectivas Librerías y Dependencias JS -->
+    <?= $this->Html->script([
+      'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/js/jquery.overlayScrollbars.min.js',
+      'https://adminlte.io/themes/v3/dist/js/adminlte.min.js'
+    ]) ?>
+    <?= $this->fetch('script') ?>
+  </body>
 </html>

@@ -73,14 +73,21 @@ class UsersController extends AppController
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+            $data = $this->request->getData();
+        
+            // Si el campo 'password' viene vacío, lo sacamos del array
+            if (empty($data['password'])) {
+                unset($data['password']);
+            }
+        
+            $user = $this->Users->patchEntity($user, $data);
+        
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
+                $this->Flash->success(__('El usuario ha sido actualizado.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
-        }
+            $this->Flash->error(__('No se pudo actualizar el usuario. Intente nuevamente.'));
+        }        
         $this->set(compact('user'));
     }
 
@@ -107,28 +114,32 @@ class UsersController extends AppController
 
     public function login()
     {
-        if ($this->request->is('post')) { // Si el formulario fue enviado (POST)
-            $user = $this->Auth->identify(); // Intenta identificar al usuario
+        $this->viewBuilder()->setLayout('default');
+
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
 
             if ($user) {
-                $this->Auth->setUser($user); // Si lo identifica, lo guarda en sesión
-                return $this->redirect($this->Auth->redirectUrl()); // Redirige al destino autorizado
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
             }
 
-            $this->Flash->error('Usuario o contraseña incorrectos, intentá de nuevo.'); // Si no, lanza error
+            $this->Flash->error('Usuario o contraseña incorrectos, intentá de nuevo.');
         }
-        
-        // Y si el usuario ya está logueado, lo redirecciona al home.
+
         if ($this->Auth->user()) {
             return $this->redirect(['controller' => 'Users', 'action' => 'index']);
         }
     }
 
-    
+
+    //Limpio la sesión al "Cerrar Sesión y redirecciono al login.
     public function logout()
     {
-        return $this->redirect($this->Auth->logout());
+        $this->request->getSession()->destroy();
+        return $this->redirect(['action' => 'login']);
     }
+
 
 
 }

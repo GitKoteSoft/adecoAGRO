@@ -1,0 +1,12 @@
+.main-content {
+    margin-top: 65px; /* Altura del header */
+    margin-left: 250px; /* Ancho del sidebar */
+    padding: 20px;
+    min-height: calc(100vh - 65px); /* Resto de la pantalla */
+    background-color: #f4f6f9; /* Color por defecto de fondo de AdminLTE */
+}
+
+hr {
+    border-top: 2px solid white;
+    margin: 20px 0;
+}
