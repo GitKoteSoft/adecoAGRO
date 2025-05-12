@@ -61,7 +61,7 @@
         <!-- Órdenes de Compra -->
         <li class="nav-item">
           <?= $this->Html->link('<i class="nav-icon fas fa-shopping-cart"></i><p>Órdenes de Compra</p>',
-              ['controller'=>'Compras','action'=>'index'],
+              ['controller'=>'OrdenCompra','action'=>'index'],
               ['escape'=>false,'class'=>'nav-link']) ?>
         </li>
       </ul>
