@@ -1,51 +1,52 @@
-# CakePHP Application Skeleton
+# Prueba Técnica: Módulo de Compra a Proveedores.
 
-[![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
-[![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
+> Proyecto desplegado en: adecompras.infinityfreeapp.com
 
-A skeleton for creating applications with [CakePHP](https://cakephp.org) 3.x.
+---
 
-The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
+## 📖 Descripción
 
-## Installation
+Este módulo permite gestionar los **Usuarios** que ingresaran al sistema, además de los **Proveedores** así como también poder realizar un **circuito de Compras** con detalles (producto, cantidad, precio, etc.), integrando la exportación en PDF de las Ordendes de Compras realizadas con cálculos automáticos y marca de agua de “ANULADA” si es que el estado de la OC fue cambiada.
 
-1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
+---
 
-If Composer is installed globally, run
+## 🛠️ Tecnologías
 
-```bash
-composer create-project --prefer-dist "cakephp/app:^3.8"
-```
+- **Framework:** CakePHP 3.10.5  
+- **Base de datos:** MySQL  
+- **Frontend:** Bootstrap 4 y AdminLTE.
+- **PDF:** CakePdf (Dompdf)  
+- **Servidor demo:** InfinityFree
 
-In case you want to use a custom app dir name (e.g. `/myapp/`):
+---
 
-```bash
-composer create-project --prefer-dist "cakephp/app:^3.8" myapp
-```
+##  Características Principales del Proyecto
 
-You can now either use your machine's webserver to view the default home page, or start
-up the built-in webserver with:
+- **ABM de Usuarios** 
+  - Login de usuario
+- **ABM de Proveedores**  
+  - Listado paginado, filtrado en tiempo real y validaciones de formulario.  
+- **Orden de Compra**
+  - Selección de Proveedor y Fecha  
+  - Detalle de ítems: producto, cantidad, precio unitario, bonificacion, IVA.
+  - Cálculo automático de subtotales, IVA y totales.
+- **Generación de PDF de la Orden de Compra**  
+  - Marca de agua de “ANULADA”  si el estado de la orden está anulada.
 
-```bash
-bin/cake server -p 8765
-```
+---
 
-Then visit `http://localhost:8765` to see the welcome page.
+## ✨ Futuros cambios que se me ocurren por ahora para agregar al Proyecto:
 
-## Update
+- Agregar fecha del último Login que realizo el usuario.
+- Agregar Roles de usuario.
+- Cuando se Anule una OC, identificar quién (Usuario) y cuando se realizó.
+- Cuando se anule una OC. Ofrecer la opción de Nota de Credito si ya se facturó.
+- Ocultar el boton eliminar si el estado de la OC está "Anulada".
 
-Since this skeleton is a starting point for your application and various files
-would have been modified as per your needs, there isn't a way to provide
-automated upgrades, so you have to do any updates manually.
+---
 
-## Configuration
+## 🚀 Instalación Local
 
-Read and edit `config/app.php` and setup the `'Datasources'` and any other
-configuration relevant for your application.
-
-## Layout
-
-The app skeleton uses a subset of [Foundation](http://foundation.zurb.com/) (v5) CSS
-framework by default. You can, however, replace it with any other library or
-custom styles.
+1. Clonar el repositorio:
+   ```bash
+   git https://github.com/GitKoteSoft/adecoAGRO.git
