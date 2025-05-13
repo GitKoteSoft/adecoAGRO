@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /**
  * OrdenCompra Controller
@@ -366,5 +368,55 @@ class OrdenCompraController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+
+
+    /**
+     * Metodo para Generar el PDF
+     */
+    public function generarPdf($id = null)
+    {
+        //Creo una nueva instancia de configuración para DomPDF.
+        $options = new \Dompdf\Options();
+        $options->setIsRemoteEnabled(true); // Habilito para que DOMpdf pueda cargar imágenes y estilos externos.
+        $options->set('chroot', [ROOT . DS . 'webroot']); // con esto, aseguro que dompdf busque dichos archivos solo dentro de la carpeta webroot del proyecto.
+        
+
+        //acá traigo los datos de la tabla en base al $id y hago cumplir sus relaciones asociadas.
+        $orden = $this->OrdenCompra->get($id, [
+            'contain' => [
+                'Proveedores' => ['Provincias'],
+                'TipoMoneda',
+                'OrdenDetalles'
+            ]
+        ]);
+
+        // Acá realizo el Calculo del Neto Gravado(La suma de los subtotales sin IVA).
+        // con Collection convierto el array en coleccion, donde puedo usar metodos para hacer casi lo mismo que haria con foreach.
+        $netoGravado = collection($orden->orden_detalles)
+        
+        // con reduce recorro todos los "detalles" y sumo los subtotales sin iva.
+        ->reduce(function($acumulador, $item_detalle) {
+            return $acumulador + $item_detalle->subtotal_sin_iva;
+        }, 0);
+
+        // Acá calculo el IVA Total (total - netoGravado)
+        $ivaTotal = $orden->total_orden_compra - $netoGravado;
+
+    
+        $this->viewBuilder()
+            ->setClassName('CakePdf.Pdf')
+            ->setLayout(false)
+            ->setTemplate('pdf_orden_compra')
+            ->setOptions([
+                'pdfConfig' => [
+                    'orientation' => 'portrait',
+                    'filename'    => 'OC-' . str_pad($orden->id, 4, '0', STR_PAD_LEFT) . '.pdf',
+                    'options'     => $options // Paso las opciones a domPDF
+                ]
+            ])
+            // Paso estas variables a la vista
+        ->setVars(compact('orden', 'netoGravado', 'ivaTotal'));
     }
 }

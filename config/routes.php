@@ -51,6 +51,8 @@ Router::scope('/', function (RouteBuilder $routes) {
         'httpOnly' => true,
     ]));
 
+    $routes->setExtensions(['pdf']);
+
     /*
      * Apply a middleware to the current route scope.
      * Requires middleware to be registered through `Application::routes()` with `registerMiddleware()`

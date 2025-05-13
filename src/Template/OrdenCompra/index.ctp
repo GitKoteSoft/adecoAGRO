@@ -1,9 +1,7 @@
-
-
 <!-- Botón Nueva Órden de Compra -->
 <?= $this->Html->link(__('Nueva Orden de Compra'), ['action' => 'add'], ['class' => 'btn btn-primary btn-lg mb-3']) ?>
 
-<!-- Filtrado de Ordenes de Compras -->
+<!-- Filtrado para las Ordenes de Compras -->
 <div class="form-group">
     <input type="text" id="filtroOrdenesCompras" class="form-control" placeholder="Se puede filtrar por: id/ Proveedor / Fecha de Emisión / Fecha de Vencimiento / Forma de Pago / Forma de Envío / Moneda / Estado / Total Orden de Compra / Created / Modified">
 </div>
@@ -102,8 +100,9 @@
                         ]) ?>
 
                         <!-- Botón Generar PDF -->
-                        <?= $this->Html->link('<i class="fas fa-file-pdf fa-lg"></i>', ['action' => 'generarPdf', $orden->id],
-                            ['escape' => false, 'class' => 'btn btn-outline-success btn-bg', 'title' => 'Generar PDF']
+                        <?= $this->Html->link('<i class="fas fa-file-pdf"></i>',
+                            ['action' => 'generarPdf', $orden->id, '_ext' => 'pdf'],
+                            ['escape' => false, 'class' => 'btn btn-outline-success', 'title' => 'Generar PDF']
                         ) ?>
                     </td>
                 </tr>

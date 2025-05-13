@@ -330,6 +330,28 @@ return [
     ],
 
     /*
+     * acá agrego a cakePDF
+     */
+    'CakePdf' => [
+        'engine' => [
+            'className' => 'CakePdf.Dompdf',
+            'pageSize' => 'A4',
+            'options' => [
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true,
+            ]
+        ],
+        'margin' => ['bottom' => 15, 'left' => 15, 'right' => 15, 'top' => 15],
+        'orientation' => 'portrait',
+        'download' => true
+    ],
+
+
+
+
+
+
+    /*
      * Configures logging options
      */
     'Log' => [

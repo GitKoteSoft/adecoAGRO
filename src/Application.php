@@ -49,7 +49,10 @@ class Application extends BaseApplication
             $this->addPlugin('DebugKit');
         }
 
-        // Load more plugins here
+        // Añadir los demas plugins acá
+
+        // Plugin cakePDF
+        $this->addPlugin('CakePdf', ['bootstrap' => true, 'routes' => true]);
     }
 
     /**

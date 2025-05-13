@@ -1,0 +1,145 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../font/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../font/Montserrat-Regular.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+}
+
+.header {
+    text-align: center; 
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+th, td {
+    border: 1px solid #666;
+    padding: 5px;
+}
+
+th {
+    background: #eee;
+}
+
+.right {
+    text-align: right;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.recuadro-principal {
+    border: 1px solid #191919;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.logo {
+    width: 100px;
+}
+
+.oc-titulo {
+    padding: 0px 70px;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: center;
+    color: #191919;
+}
+
+.datos-oc {
+    text-align: right;
+    font-size: 11px;
+}
+
+.empresa-info {
+    margin-bottom: 15px;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+/* Estilos generales de tabla */
+table.detalles, table.resumen {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    font-size: 11px;
+}
+
+/* Cabecera */
+table.detalles thead th,
+table.resumen thead th {
+    background: #025736;
+    color: #fff;
+    padding: 8px;
+    border: none;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+/* Filas alternas */
+table.detalles tbody tr:nth-child(odd),
+table.resumen tbody tr:nth-child(odd) {
+    background: #f2f2f2;
+}
+
+/* Celdas */
+table.detalles td,
+table.resumen td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Última fila sin borde bottom */
+table.resumen tbody tr:last-child td {
+    border-bottom: none;
+    font-weight: bold;
+}
+
+/* Alinear columnas numéricas */
+.text-right {
+    text-align: right;
+}
+
+.observaciones {
+    border: 1px solid #999;
+    padding: 10px;
+    margin-top: 30px;
+    font-size: 11px;
+    min-height: 80px;
+    page-break-inside: avoid;
+}
