@@ -1,6 +1,11 @@
 # Prueba Técnica: Módulo de Compra a Proveedores.
+---
 
 # Proyecto desplegado en: https://adecompras.infinityfreeapp.com/users/login
+
+### Credenciales para ingresar al sistema:
+  - Usuario: admin  (minúscula)
+  - Clave: adecoagro  (minúscula)
 
 ---
 
