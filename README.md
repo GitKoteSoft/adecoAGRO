@@ -15,7 +15,8 @@ Este módulo permite gestionar los **Usuarios** que ingresaran al sistema, adem�
 - **Framework:** CakePHP 3.10.5  
 - **Base de datos:** MySQL  
 - **Frontend:** Bootstrap 4 y AdminLTE.
-- **PDF:** CakePdf (Dompdf)  
+- **PDF:** CakePdf (Dompdf) intenté usar DomPDF, en Desarrollo funciona perfecto pero, parece que el servidor InfinityFree tiene problemas para procesar PDF, entonces opté por la siguiente solución. 
+              Consumí una API ShitPDF, con la cual me cree una cuenta, me otorgaron 50 créditos grauitos, eso significa que se podrán descargar actualmente 45 PDF menos los de prueba que yo utilicé.
 - **Servidor demo:** InfinityFree
 
 ---
