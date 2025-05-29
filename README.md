@@ -3,10 +3,6 @@
 
 # Proyecto desplegado en: https://adecompras.infinityfreeapp.com/users/login
 
-### Credenciales para ingresar al sistema:
-  - Usuario: admin  (minúscula)
-  - Clave: adecoagro  (minúscula)
-
 ### Base de Datos:
   - En la raíz del Proyecto GitHub, se encuentra una carpeta "Anotaciones del Proyecto", ahí encontrarás dentro la Base de Datos.
 
